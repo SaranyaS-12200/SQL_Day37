@@ -1,0 +1,142 @@
+
+CREATE Database Guvi;
+
+CREATE TABLE  Zen_class(
+    studID int NOT NULL ,
+    stud_class_day int,
+    stud_dashboard_id int,
+    stud_tasks_id int,
+    stud_queries varchar(255),
+    stud_Interview varchar(255),
+    PRIMARY KEY(studID)
+);
+
+INSERT INTO Guvi.Zen_class(
+    studID,
+    stud_class_day,
+    stud_dashboard_id,
+    stud_tasks_id,
+    stud_queries,
+    stud_Interview
+)
+VALUES
+    (1,1,1022,2001,MRF,Finished),
+    (2,2,2011,2002,noquery,Notyet),
+    (3,3,3011,2003,Filter,Finished),
+    (4,4,4011,2004,components,Notyet),
+    (5,5,5011,2005,hook,Finished);
+
+CREATE TABLE  student_collection(
+  zen_class_stu_id int NOT NULL, 
+  stu_name varchar(255) NOT NULL,
+  stu_email varchar(255) NOT NULL,
+  stu_Batch varchar(255) NOT NULL, 
+  stu_qualification varchar(255) NOT NULL, 
+  stu_address varchar(255) NOT NULL,
+  stu_task_id int NOT NULL, 
+  stu_mentor_id int NOT NULL, 
+  stu_batch_id int NOT NULL, 
+  stu_course_id int NOT NULL,    
+  PRIMARY KEY(
+stu_course_id)
+);
+
+INSERT INTO Guvi.student_collection (
+    zen_class_stu_id,
+    stu_name, 
+    stu_email, 
+    stu_Batch, 
+    stu_qualification, 
+    stu_address, 
+    stu_task_id, 
+    stu_mentor_id, 
+    stu_batch_id, 
+    stu_course_id
+)
+VALUES
+
+    (1,Zafar,zafar@mail.com,WeekDay,Mechanical Engineering,Madurai,2001,1701,25,1),
+    (2,Sruthika,sruthika@mail.com,WeekEnd,ComputerScience,chennai,2002,2025,30,2),
+    (3,Mamtha,mamtha@mail.com,WeekDay,Information Technology,Pondicherry,2003,1819,25,3),
+    (4,Alfonse,alfonse@mail.com,WeekEnd,Msc.Comp.Science,Thirunelveli,2004,5201,19,4),
+    (5,Agnes,agnes@mail.com,WeekDay,Bsc.Maths,Thirupathur,2005,3200,20,5);
+
+CREATE TABLE  batch_collection(
+    stu_coll_Batch_id int NOT NULL, 
+    stu_coll_stu_batch varchar(255) NOT NULL, 
+    stu_coll_stu_course_id int NOT NULL, 
+    Batch_Course_name varchar(255) NOT NULL, 
+    Batch_Course_duration varchar(255) NOT NULL, 
+    stu_coll_stu_name varchar(255) NOT NULL,
+    PRIMARY KEY(stu_coll_Batch_id)
+);
+
+INSERT INTO Guvi.batch_collection (
+    stu_coll_Batch_id,
+    stu_coll_stu_batch,
+    stu_coll_stu_course_id,
+    Batch_Course_name,
+    Batch_Course_duration,
+    stu_coll_stu_name
+)
+VALUES
+    (25,WeekDay,1,JS,2week,Zafar),
+    (30,WeekEnd,2,Reactjs,3week,Sruthika),
+    (25,WeekDay,3,Mongodb,1week,Mamtha),
+    (19,WeekEnd,4,NodeJs,2week,Alfonse),
+    (20,WeekDay,5,AWS,1week,Agnes);
+
+
+CREATE TABLE  Task_collection(
+    zen_class_stud_task_id int NOT NULL ,
+    stu_coll_stu_name varchar(255) NOT NULL,
+    task_name varchar(255) NOT NULL,
+    task_points float NOT NULL,
+    task_evaluator_mentor_name varchar(255) NOT NULL,
+    mentor_id int NOT NULL,
+    PRIMARY KEY(zen_class_stud_task_id)
+);
+
+INSERT INTO Guvi.Task_collection(
+   zen_class_stu_task_id, 
+   stu_coll_stu_name, 
+   task_name, 
+   task_points, 
+   task_evaluator_mentor_name, 
+   mentor_id
+)
+VALUES
+    (2001,Zafar,crud,4.2,Arun,1701),
+    (2002,Agnes,Components,4.1,Bashira,3200),
+    (2003,Mamtha,props,3.8,Madesh,1819),
+    (2004,Sruthika,Roter,2.8,Mugil,2025),
+    (2005,Alfonse,MRF,5,Priya,5201);
+
+
+CREATE TABLE  mentor_collection(
+   Task_coll_Mentor_id int NOT NULL,
+   Mentor_name varchar(255) NOT NULL, 
+   Mentee_count int NOT NULL,
+   No_of_task_evaluated int NOT NULL, 
+   PRIMARY KEY(Task_coll_Mentor_id)
+);
+
+INSERT INTO Guvi.mentor_collection (
+    Task_coll_Mentor_id,
+    Mentor_name,
+    Mentee_count,
+    No_of_task_evaluated
+)
+VALUES
+    (1701,Arul,15,10),
+    (1819,Madesh,10,6),
+    (2025,Mugil,25,15),
+    (3200,Bahira,18,10),
+    (5201,Priya,30,19);
+
+
+
+
+o/p:
+
+
